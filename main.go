@@ -94,9 +94,9 @@ func updateGist(ctx context.Context, token string, gistId string, fileName strin
 	if hitokoto.From == "" && hitokoto.FromWho == "" {
 		from = ""
 	} else if hitokoto.From != "" {
-		from = fmt.Sprintf("\n ---%s", hitokoto.From)
+		from = fmt.Sprintf("\n ——%s", hitokoto.From)
 	} else {
-		from = fmt.Sprintf("\n ---%s", hitokoto.FromWho)
+		from = fmt.Sprintf("\n ——%s", hitokoto.FromWho)
 	}
 
 	s2t, err := opencc.New("s2t")
