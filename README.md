@@ -11,13 +11,13 @@
 
 2. [新增一個 GitHub Token](https://github.com/settings/tokens/new)，勾選 `gist` 權限並複製它。
 
-3. Fork 這個儲存庫。
+3. 使用這個儲存庫作為模板（點選 **Use this template > Create a new repository**）。
 
-4. 進入你 Fork 後的儲存庫的 **Settings** 分頁下的 **Secrets and variables > Actions** 選項卡。
+4. 進入 Generate 後的儲存庫的 **Settings** 分頁下的 **Secrets and variables > Actions** 選項卡。
 
 5. 點選 **New repository secret** 並添加 `GH_TOKEN` 變數，內容為第二步複製的 Token。
 
-6. 進入你 Fork 後的儲存庫的 **Actions** 分頁，啟用 **Update Gist** 作業流程。
+6. 進入 **Actions** 分頁，啟用 **Update Gist** 作業流程。
 
 7. 在 `.github/workflows/main.yml` 中編輯[環境變數](https://github.com/kuohuanhuan/hitokoto-box/blob/master/.github/workflows/main.yml#L16-L19)：
     - **CATEGORY**: 一言的類別，所有類別的選項清單在 [這裡](https://developer.hitokoto.cn/sentence/#%E5%8F%A5%E5%AD%90%E7%B1%BB%E5%9E%8B-%E5%8F%82%E6%95%B0)（預設為 `dfgk`，若希望取得所有類別，請刪除這個設定項目）。
