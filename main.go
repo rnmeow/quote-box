@@ -83,19 +83,31 @@ func updateGist(ctx context.Context, token string, gistId string, fileName strin
 	}
 	now := time.Now().In(loc).Format(time.RFC1123)
 
-	var from string
-	if hitokoto.From == "" && hitokoto.FromWho == "" {
-		from = ""
-	} else if hitokoto.From != "" {
-		from = fmt.Sprintf("\n ——%s", hitokoto.From)
-	} else {
-		from = fmt.Sprintf("\n ——%s", hitokoto.FromWho)
-	}
-
 	s2t, err := opencc.New("s2t")
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	var from string
+	if hitokoto.From == "" && hitokoto.FromWho == "" {
+		from = ""
+	} else if hitokoto.From != "" {
+		source, err := s2t.Convert(hitokoto.From)
+		if err != nil {
+			log.Fatal(err)
+		}
+		from = fmt.Sprintf("\n ——%s", source)
+	} else if hitokoto.FromWho != "" {
+		source, err := s2t.Convert(hitokoto.FromWho)
+		if err != nil {
+			log.Fatal(err)
+		}
+		from = fmt.Sprintf("\n ——%s", source)
+	} else {
+		log.Fatal("unexpected error")
+		return nil
+	}
+
 	hito, err := s2t.Convert(hitokoto.Hitokoto)
 	if err != nil {
 		log.Fatal(err)
