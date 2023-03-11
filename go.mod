@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/go-resty/resty/v2 v2.7.0
-	github.com/google/go-github/v44 v44.0.0
+	github.com/google/go-github/v44 v44.1.0
 	github.com/longbridgeapp/opencc v0.3.3
 	golang.org/x/oauth2 v0.0.0-20220411215720-9780585627b5
 )
