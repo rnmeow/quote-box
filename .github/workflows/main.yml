@@ -25,7 +25,7 @@ jobs:
     - name: Setup Golang
       uses: actions/setup-go@v3
       with:
-        go-version: 1.20
+        go-version: '>=1.20'
     # Step III
     - name: Execute Program
       run: |
