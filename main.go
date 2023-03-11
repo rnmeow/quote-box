@@ -15,7 +15,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-const endpoint string = "https://international.v1.hitokoto.cn/"
+const endpoint string = "https://international.v1.hitokoto.cn"
 
 type Response struct {
 	Hitokoto string `json:"hitokoto"`
@@ -29,7 +29,6 @@ func main() {
 	fileName := strings.TrimSpace(os.Getenv("FILE_NAME"))
 	ghToken := strings.TrimSpace(os.Getenv("GH_TOKEN"))
 	gistId := strings.TrimSpace(os.Getenv("GIST_ID"))
-
 	if ghToken == "" {
 		log.Fatal("Please add GH_TOKEN environment.")
 	}
@@ -39,17 +38,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	ctx := context.Background()
-
-	err = updateGist(ctx, ghToken, gistId, fileName, hitokoto)
+	err = updateGist(context.Background(), ghToken, gistId, fileName, hitokoto)
 	if err != nil {
 		log.Fatal(err)
 	}
+	return
 }
 
 func getHitokoto(categories []string) (*Response, error) {
-	client := resty.New()
-
 	query := url.Values{}
 	for _, v := range categories {
 		if c := strings.TrimSpace(v); c == "" {
@@ -62,10 +58,7 @@ func getHitokoto(categories []string) (*Response, error) {
 	query.Add("charset", "utf-8")
 
 	var resp Response
-	_, err := client.R().
-		SetQueryParamsFromValues(query).
-		SetResult(&resp).
-		Get(endpoint)
+	_, err := resty.New().R().SetQueryParamsFromValues(query).SetResult(&resp).Get(endpoint)
 	if err != nil {
 		return nil, err
 	}
@@ -113,9 +106,9 @@ func updateGist(ctx context.Context, token string, gistId string, fileName strin
 	f.Content = &content
 	gist.Files[github.GistFilename(fileName)] = f
 
-	if _, _, err := client.Gists.Edit(ctx, gistId, gist); err != nil {
-		log.Fatal(err)
+	_, _, err = client.Gists.Edit(ctx, gistId, gist)
+	if err != nil {
+		return err
 	}
-
 	return nil
 }
