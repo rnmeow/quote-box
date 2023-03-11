@@ -13,8 +13,9 @@ jobs:
     # Use Ubuntu 22.04 LTS
     runs-on: ubuntu-22.04
     env:
+      CATEGORY: dfgk
       FILE_NAME: 🌧 Hitokoto
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
       GIST_ID: 8277475f43f2054b4b7f8a51f24d41e7
     steps:
     # Step I
