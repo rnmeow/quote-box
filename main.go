@@ -15,11 +15,8 @@ import (
 	"golang.org/x/oauth2"
 )
 
-const (
-	endpoint string = "https://v1.hitokoto.cn"
-)
+const endpoint string = "https://international.v1.hitokoto.cn/"
 
-// Response is response struct referring to https://developer.hitokoto.cn/sentence/#%E8%BF%94%E5%9B%9E%E6%A0%BC%E5%BC%8F
 type Response struct {
 	Hitokoto string `json:"hitokoto"`
 	From     string `json:"from"`
@@ -53,7 +50,6 @@ func main() {
 func getHitokoto(categories []string) (*Response, error) {
 	client := resty.New()
 
-	// set query parameters
 	query := url.Values{}
 	for _, v := range categories {
 		if c := strings.TrimSpace(v); c == "" {
