@@ -1,0 +1,32 @@
+name: Update Gist
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: 0 * * * *
+
+jobs:
+  # Gist Update
+  update:
+    # Use Ubuntu 22.04 LTS
+    runs-on: ubuntu-22.04
+    env:
+      FILE_NAME: 🌧 Hitokoto
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GIST_ID: 8277475f43f2054b4b7f8a51f24d41e7
+    steps:
+    # Step I
+    - name: Get Source Code
+      uses: actions/checkout@v3
+    # Step II
+    - name: Setup Golang
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.20
+    # Step III
+    - name: Execute Program
+      run: |
+        go mod tidy
+        go run .
