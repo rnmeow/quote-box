@@ -1,5 +1,5 @@
 import { join } from 'https://deno.land/std@0.182.0/path/mod.ts'
-import * as OpenCC from 'https://esm.sh/opencc-js@1.0.5'
+import * as OpenCC from 'https://esm.run/opencc-js@1.0.5'
 
 export interface Response {
   hitokoto: string,
