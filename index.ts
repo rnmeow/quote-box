@@ -26,7 +26,13 @@ if (data.from === '' && data.from_who === '') {
   Deno.exit(1)
 }
 
-const content = `${converter(data.hitokoto) + from}\n\n更新於 ${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}`
+const content = `${converter(data.hitokoto) + from}\n\n於 ${new Date().toLocaleString(
+  'zh-TW',
+  {
+    timeZone: 'Asia/Taipei',
+    hourCycle: 'h23'
+  }
+)} 更新\n`
 
 try {
   await Deno.mkdir(join(Deno.cwd(), 'dist'), { recursive: true })
