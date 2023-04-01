@@ -37,5 +37,11 @@ jobs:
         gist_file_name: ${{ env.FILE_NAME }}
         file_path: dist/hitokoto.txt
         file_type: text
+    # Step V
+    - name: Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: received
+        path: dist/data.json
 
 # Authored by @kuohuanhuan.

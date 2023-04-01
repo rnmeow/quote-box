@@ -36,6 +36,7 @@ const content = `${converter(data.hitokoto) + from}\n\n於 ${new Date().toLocale
 
 try {
   await Deno.mkdir(join(Deno.cwd(), 'dist'), { recursive: true })
+  await Deno.writeTextFile(join(Deno.cwd(), 'dist/data.json'), JSON.stringify(data))
   await Deno.writeTextFile(join(Deno.cwd(), 'dist/hitokoto.txt'), content)
 } catch (err) {
   console.error(`FATAL: ${err}`)
