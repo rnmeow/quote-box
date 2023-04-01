@@ -1,6 +1,6 @@
 # hitokoto-box
 
-將一則隨機的 [一言](https://github.com/hitokoto-osc/hitokoto-api) 顯示在「已置頂的 [GitHub Gist](https://gist.github.com)」，並使用 [OpenCC](https://github.com/longbridgeapp/opencc) 轉換成正體中文。
+將一則隨機的 [一言](https://github.com/hitokoto-osc/hitokoto-api) 顯示在「已置頂的 [GitHub Gist](https://gist.github.com)」，並使用 [opencc-js](https://github.com/nk2028/opencc-js) 轉換成正體中文。
 
 > *ps. 若想了解更多置頂 Gist 專案，請前往*  
 > *<https://github.com/matchai/awesome-pinned-gists>*
