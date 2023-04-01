@@ -26,11 +26,11 @@ if (data.from === '' && data.from_who === '') {
   Deno.exit(1)
 }
 
-const hitokoto = `${converter(data.hitokoto) + from}\n\n更新於 ${new Date().toLocaleString()}`
+const content = `${converter(data.hitokoto) + from}\n\n更新於 ${new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })}`
 
 try {
   await Deno.mkdir(join(Deno.cwd(), 'dist'), { recursive: true })
-  await Deno.writeTextFile(join(Deno.cwd(), 'dist/hitokoto.txt'), hitokoto)
+  await Deno.writeTextFile(join(Deno.cwd(), 'dist/hitokoto.txt'), content)
 } catch (err) {
   console.error(`FATAL: ${err}`)
   Deno.exit(1)
