@@ -1,11 +1,5 @@
 version: 2
 updates:
-  # Go Modules
-  - package-ecosystem: gomod
-    directory: /
-    schedule:
-      interval: daily
-  # GitHub Actions
   - package-ecosystem: github-actions
     directory: /.github/workflows
     schedule:
