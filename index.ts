@@ -16,7 +16,7 @@ const converter = OpenCC.Converter({ from: 'cn', to: 'tw' })
 let from: string
 
 if (data.from === '' && data.from_who === '') {
-  from = '——佚名'
+  from = '\n ——佚名'
 } else if (data.from !== '') {
   from = `\n ——${converter(data.from)}`
 } else if (data.from_who !== '') {
