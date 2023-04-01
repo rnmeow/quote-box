@@ -19,15 +19,15 @@ jobs:
       GIST_ID: 8277475f43f2054b4b7f8a51f24d41e7
     steps:
     # Step I
-    - name: Get Source Code
-      uses: actions/checkout@v3
-    # Step II
-    - name: Setup Golang
+    - name: Setup Go
       uses: actions/setup-go@v4
       with:
-        go-version: 1.20.x
+        go-version: 1.20.2
+    # Step II
+    - name: Checkout
+      uses: actions/checkout@v3
     # Step III
-    - name: Execute Program
+    - name: Execute
       run: go run .
 
 # Authored by @kuohuanhuan.
