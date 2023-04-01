@@ -19,16 +19,15 @@
 
 6. 進入 **Actions** 分頁，啟用 **Update Gist** 作業流程。
 
-7. 在 `.github/workflows/main.yml` 中編輯[環境變數](https://github.com/kuohuanhuan/hitokoto-box/blob/master/.github/workflows/main.yml#L16-L19)：
-    - **CATEGORY**: 一言的類別，所有類別的選項清單在 [這裡](https://developer.hitokoto.cn/sentence/#%E5%8F%A5%E5%AD%90%E7%B1%BB%E5%9E%8B-%E5%8F%82%E6%95%B0)（預設為 `dfgk`，若希望取得所有類別，請刪除這個設定項目）。
+7. 在 `.github/workflows/main.yml` 中編輯[環境變數](https://github.com/kuohuanhuan/hitokoto-box/blob/master/.github/workflows/main.yml#L16-L18)：
+    - **CATEGORY**: 一言的類別，所有類別的選項清單在 [這裡](https://developer.hitokoto.cn/sentence/#%E5%8F%A5%E5%AD%90%E7%B1%BB%E5%9E%8B-%E5%8F%82%E6%95%B0)（預設為 `dik`，若希望取得所有類別，請刪除這個設定項目）。
     - **FILE_NAME**: 定義一言的名稱，可自行修改（預設為 *🌧 Hitokoto*）。
-    - **GH_TOKEN**: 定義 `GH_TOKEN` 取自 Actions Secret，通常不須更動。
     - **GIST_ID:** 你的 Gist URL 的 ID（例如 `8277475f43f2054b4b7f8a51f24d41e7` 就代表 [這個 Gist](https://gist.github.com/kuohuanhuan/8277475f43f2054b4b7f8a51f24d41e7)）。
 
 8. 成功！
 
 > ***Tip!***
-> 
+>
 > *`hitokoto-box` 預設**每小時**更新一次一言，如果你想更改更新頻率，需要在 `.github/workflows/main.yml` 中編輯 [`cron`](https://github.com/kuohuanhuan/hitokoto-box/blob/master/.github/workflows/main.yml#L8) 欄位。）*
 
 ## 授權

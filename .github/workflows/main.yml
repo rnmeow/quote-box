@@ -13,21 +13,29 @@ jobs:
     # Use Ubuntu 22.04 LTS
     runs-on: ubuntu-22.04
     env:
-      CATEGORY: dfgk
+      CATEGORY: dik
       FILE_NAME: 🌧 Hitokoto
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
       GIST_ID: 8277475f43f2054b4b7f8a51f24d41e7
     steps:
     # Step I
-    - name: Setup Go
-      uses: actions/setup-go@v4
+    - name: Setup Deno
+      uses: denoland/setup-deno@v1
       with:
-        go-version: 1.20.2
+        deno-version: v1.32.2
     # Step II
     - name: Checkout
       uses: actions/checkout@v3
     # Step III
-    - name: Execute
-      run: go run .
+    - name: Receive
+      run: deno run --allow-read --allow-write --allow-net --allow-env index.ts
+    # Step IV
+    - name: Sync
+      uses: exuanbo/actions-deploy-gist@v1
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+        gist_id: ${{ env.GIST_ID }}
+        gist_file_name: ${{ env.FILE_NAME }}
+        file_path: dist/hitokoto.txt
+        file_type: text
 
 # Authored by @kuohuanhuan.

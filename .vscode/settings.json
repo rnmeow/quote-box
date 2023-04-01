@@ -1,4 +1,5 @@
 {
   "cSpell.enabled": false,
-  "markdownlint.ignore": ".markdownlintignore"
+  "deno.enable": true,
+  "deno.unstable": true
 }
