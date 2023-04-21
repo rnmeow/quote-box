@@ -1,5 +1,5 @@
 import { join } from "https://deno.land/std@0.184.0/path/mod.ts";
-import * as OpenCC from "https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/+esm";
+import { Converter } from "https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/+esm";
 
 export interface Response {
   hitokoto: string;
@@ -13,19 +13,17 @@ const data: Response = await fetch(
   }&encode=json&charset=utf-8`,
 ).then((res) => res.json());
 
-const converter = OpenCC.Converter({ from: "cn", to: "tw" });
-
 let from: string;
 
 if (data.from === "" && data.from_who === "") from = "佚名";
-else if (data.from !== "") from = converter(data.from);
-else if (data.from_who !== "") from = converter(data.from_who);
+else if (data.from !== "") from = data.from;
+else if (data.from_who !== "") from = data.from_who;
 else {
   console.error("Unexpected error");
   Deno.exit(1);
 }
 
-const content = `${converter(data.hitokoto)}
+const content = `${data.hitokoto}
  ——${from}
 
 於 ${
@@ -37,7 +35,10 @@ const content = `${converter(data.hitokoto)}
 
 try {
   await Deno.mkdir(join(Deno.cwd(), "dist"), { recursive: true });
-  await Deno.writeTextFile(join(Deno.cwd(), "dist/hitokoto.txt"), content);
+  await Deno.writeTextFile(
+    join(Deno.cwd(), "dist/hitokoto.txt"),
+    Converter({ from: "cn", to: "tw" })(content),
+  );
 } catch (err) {
   console.error(`FATAL: ${err}`);
   Deno.exit(1);
