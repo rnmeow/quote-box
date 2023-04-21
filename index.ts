@@ -7,10 +7,16 @@ export interface Response {
   from_who: string;
 }
 
+const params: string[][] = [
+  ["encode", "json"],
+  ["charset", "utf-8"],
+];
+for (const i of Deno.env.get("CATEGORY")?.split("") || []) {
+  params.push(["c", i]);
+}
+
 const data: Response = await fetch(
-  `https://international.v1.hitokoto.cn?c=${
-    Deno.env.get("CATEGORY")?.split("").join("&c=") || "d"
-  }&encode=json&charset=utf-8`,
+  `https://international.v1.hitokoto.cn/?${new URLSearchParams(params)}`,
 ).then((res) => res.json());
 
 let from: string;
