@@ -29,7 +29,7 @@ else {
   Deno.exit(1);
 }
 
-const content = `〝${data.hitokoto}〞
+const content = `❝${data.hitokoto}❞
  ——${from}
 
 於 ${
