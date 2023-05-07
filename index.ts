@@ -29,7 +29,7 @@ else {
   Deno.exit(1);
 }
 
-const content = `${data.hitokoto}
+const content = `〝${data.hitokoto}〞
  ——${from}
 
 於 ${
@@ -38,6 +38,8 @@ const content = `${data.hitokoto}
     hourCycle: "h23",
   })
 } 更新`;
+
+console.log("\n"+ content + "\n");
 
 try {
   await Deno.mkdir(join(Deno.cwd(), "dist"), { recursive: true });
