@@ -39,7 +39,7 @@ const content = `❝${data.hitokoto}❞
   })
 } 更新`;
 
-console.log("\n"+ content + "\n");
+console.log("\n" + Converter({ from: "cn", to: "tw" })(content) + "\n");
 
 try {
   await Deno.mkdir(join(Deno.cwd(), "dist"), { recursive: true });
