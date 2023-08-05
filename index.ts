@@ -1,4 +1,4 @@
-import { join } from "https://deno.land/std@0.191.0/path/mod.ts";
+import { join } from "https://deno.land/std@0.197.0/path/mod.ts";
 import { Converter } from "https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/+esm";
 
 export interface Response {
