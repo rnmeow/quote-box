@@ -21,7 +21,7 @@ jobs:
     - name: Setup Deno
       uses: denoland/setup-deno@v1
       with:
-        deno-version: v1.x
+        deno-version: v1.36.0
     # Step II
     - name: Checkout
       uses: actions/checkout@v3
@@ -38,4 +38,4 @@ jobs:
         file_path: dist/hitokoto.txt
         file_type: text
 
-# Authored by @kuohuanhuan.
+# Authored by rnmeow, licensed under MIT License.
