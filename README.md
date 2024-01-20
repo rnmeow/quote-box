@@ -22,7 +22,7 @@
 7. 在 `.github/workflows/main.yml` 中編輯[環境變數](https://github.com/kuohuanhuan/hitokoto-box/blob/master/.github/workflows/main.yml#L16-L18)：
     - **CATEGORY**: 一言的類別，所有類別的選項清單在 [這裡](https://developer.hitokoto.cn/sentence/#%E5%8F%A5%E5%AD%90%E7%B1%BB%E5%9E%8B-%E5%8F%82%E6%95%B0)（預設為 `dik`，若希望取得所有類別，請刪除這個設定項目）。
     - **FILE_NAME**: 定義一言的名稱，可自行修改（預設為 *🌧 Hitokoto*）。
-    - **GIST_ID:** 你的 Gist URL 的 ID（例如 `8277475f43f2054b4b7f8a51f24d41e7` 就代表 [這個 Gist](https://gist.github.com/kuohuanhuan/8277475f43f2054b4b7f8a51f24d41e7)）。
+    - **GIST_ID:** 你的 Gist URL 的 ID（例如 `8277475f43f2054b4b7f8a51f24d41e7` 就代表 [這個 Gist](https://gist.github.com/rnmeow/8277475f43f2054b4b7f8a51f24d41e7)）。
 
 8. 成功！
 
