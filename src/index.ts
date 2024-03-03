@@ -25,7 +25,7 @@ export interface Resp {
   console.log(`\n${content}\n`)
 
   try {
-    await writeFile(join(process.cwd(), 'dist/quote.txt'), content)
+    await writeFile(join(process.cwd(), 'quote.txt'), content)
   } catch (err) {
     console.error(`FATAL: ${err}`)
     process.exit(1)
