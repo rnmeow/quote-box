@@ -2,8 +2,8 @@ name: quote-box-zh_tw
 author: Yu-huan Kuo <touch@rnmeow.com>
 description: Get a quote to your GitHub Gist, API powered by Elegant TW.
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node20'
+  main: 'dist/index.js'
 branding:
   icon: 'file-text'
   color: 'yellow'
