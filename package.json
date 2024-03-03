@@ -5,8 +5,8 @@
   "description": "Get a quote and store to local, API powered by Elegant TW.",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "prettier --check index.ts",
-    "lint:fix": "prettier --check index.ts --write",
+    "lint": "prettier --check src/index.ts",
+    "lint:fix": "prettier --check src/index.ts --write",
     "build": "esbuild src/index.ts --bundle --platform=node --minify --outfile=dist/index.js"
   },
   "author": "Yu-huan Kuo <touch@rnmeow.com>",
