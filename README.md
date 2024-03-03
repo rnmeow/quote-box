@@ -1,6 +1,6 @@
 # quote-box-zh_tw
 
-下載一則隨機的語錄，格式化後存檔至 `quote.txt`。你可以利用 [Deploy to Gist](https://github.com/marketplace/actions/deploy-to-gist) 等 Actions 來定時推送到 [GitHub Gist](https://gist.github.com) 並釘選至個人檔案，以增添其豐富度。
+下載一則隨機的語錄，格式化後存檔至 `quote.txt`。你可以利用 GitHub Actions 來定時推送到 [Gist](https://gist.github.com) 並釘選至個人檔案，以增添其豐富度。
 
 語錄 API 由 [言雅 Elegent TW](https://elegant.tw) 提供。
 
@@ -21,4 +21,4 @@
 
 ## 授權
 
-Copyright (C) 2023, 2024 [Yu-huan Kuo](https://github.com/rnmeow), licensed under [MIT License](https://github.com/kuohuanhuan/quote-box-zh_tw/blob/master/LICENSE).
+Copyright (C) 2023, 2024 [Yu-huan Kuo](https://github.com/rnmeow), licensed under [MIT License](https://github.com/rnmeow/quote-box-zh_tw/blob/master/LICENSE.txt).
