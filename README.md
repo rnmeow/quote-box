@@ -9,15 +9,38 @@
 
 ## 使用
 
-1. 新增一個 GitHub Actions 作業流程。
+你可以使用 GitHub Actions 作業流程來執行操作，以下為一個範例，使用 [Deploy to Gist](https://github.com/marketplace/actions/deploy-to-gist)：
 
-2. 添加 [`schedule`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) 欄位，並設定定時執行。
+```yaml
+name: Push to Gist
 
-3. 在 Marketplace 中選擇 [此 Action](https://github.com/marketplace/actions/quote-box-zh_tw)。
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: 0 0 * * * # 每天執行
 
-4. 使用 [Deploy to Gist](https://github.com/marketplace/actions/deploy-to-gist) 並填入必要參數（`token`、`gist_id` 和 `file_path: quote.txt`）。
+jobs:
+  push:
+    runs-on: ubuntu-22.04
+    env:
+      FILE_NAME: 🌧 Quote
+      GIST_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    steps:
+    - name: Download
+      uses: rnmeow/quote-box-zh_tw@0.1.0
+    - name: Push
+      uses: exuanbo/actions-deploy-gist@v1.1.4
+      with:
+        token: ${{ secrets.GH_TOKEN }} # 需要自行產生
+        gist_id: ${{ env.GIST_ID }} # 上述 `env` 設定
+        gist_file_name: ${{ env.FILE_NAME }} # 上述 `env` 設定
+        file_path: quote.txt
+        file_type: text
 
-5. 成功！
+# Authored by Yu-huan Kuo, licensed under MIT License.
+```
 
 ## 授權
 
