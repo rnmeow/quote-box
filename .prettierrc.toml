@@ -1,0 +1,7 @@
+parser = "typescript"
+
+trailingComma = "all"
+semi = false
+singleQuote = true
+quoteProps = "consistent"
+arrowParens = "always"
