@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "description": "Get a quote and store to local, API powered by Elegant TW.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "prettier --check index.ts",
     "lint:fix": "prettier --check index.ts --write",
