@@ -2,11 +2,11 @@
   "name": "quote-box-zh_tw",
   "private": true,
   "version": "0.1.0",
-  "description": "Get a quote and store to local, API powered by Elegant TW.",
+  "description": "Get a quote and save as a file, API by Elegant TW. Works with GitHub Gist.",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "prettier --check src/index.ts",
-    "lint:fix": "prettier --check src/index.ts --write",
+    "format": "prettier --check src/index.ts",
+    "format:fix": "prettier --check src/index.ts --write",
     "build": "esbuild src/index.ts --bundle --platform=node --minify --outfile=dist/index.js"
   },
   "author": "Yu-huan Kuo <touch@rnmeow.com>",
