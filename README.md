@@ -29,7 +29,7 @@ jobs:
       GIST_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     steps:
     - name: Download
-      uses: rnmeow/quote-box-zh_tw@0.1.0
+      uses: rnmeow/quote-box-zh_tw@0.1.1
     - name: Push
       uses: exuanbo/actions-deploy-gist@v1.1.4
       with:
