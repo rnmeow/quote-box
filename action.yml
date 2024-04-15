@@ -2,8 +2,8 @@ name: quote-box-zh_tw
 author: Yu-huan Kuo <touch@rnmeow.com>
 description: Get a quote and push to GitHub Gist.
 runs:
-  using: 'node20'
-  main: 'dist/index.mjs'
+  using: node20
+  main: dist/index.js
 inputs:
   gist_id:
     default: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -12,5 +12,5 @@ inputs:
     default: 🌧 Quote
     description: The file name in the gist.
 branding:
-  icon: 'file-text'
-  color: 'yellow'
+  icon: file-text
+  color: yellow
