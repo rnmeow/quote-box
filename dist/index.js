@@ -62,7 +62,7 @@ Support boolean input list: \`true | True | TRUE | false | False | FALSE\``)}D.g
 
 \u65BC ${new Date().toLocaleString("zh-TW",{timeZone:"Asia/Taipei",hourCycle:"h23"})} \u66F4\u65B0`;console.log(`
 ${e}
-`);let t={token:process.env.GH_TOKEN,gistId:(0,jE.getInput)("gist_id",{required:!0}),gistFileName:(0,jE.getInput)("gist_file_name",{required:!0})},r=await Fi("GET /gists/:gist_id",{gist_id:t.gistId,headers:{authorization:`token ${t.token}`}}),s=Object.keys(r.data.files)[0];Fi("PATCH /gists/:gist_id",{files:{[s]:{filename:t.gistFileName,content:e}},gist_id:t.gistId,headers:{authorization:`token ${t.token}`}}).then(()=>{console.log("GitHub Gist \u66F4\u65B0\u5B8C\u6210\uFF01")}).catch(n=>{console.error(n),process.exit(1)})})();
+`);let t={token:process.env.GH_TOKEN,gistId:(0,jE.getInput)("gist_id",{required:!0}),gistFileName:(0,jE.getInput)("gist_file_name",{required:!0})},r=await Fi("GET /gists/:gist_id",{gist_id:t.gistId,headers:{authorization:`token ${t.token}`}}),s=Object.keys(r.data.files)[0];Fi("PATCH /gists/:gist_id",{files:{[s]:{filename:t.gistFileName,content:e}},gist_id:t.gistId,headers:{authorization:`token ${t.token}`}}).then(()=>{console.log("INFO: GitHub Gist \u66F4\u65B0\u5B8C\u6210\uFF01")}).catch(n=>{console.error(`FATAL: ${n}`),process.exit(1)})})();
 /*! Bundled license information:
 
 undici/lib/fetch/body.js:

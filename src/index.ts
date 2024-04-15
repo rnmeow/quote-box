@@ -52,10 +52,10 @@ export interface Resp {
     },
   })
     .then(() => {
-      console.log('GitHub Gist 更新完成！')
+      console.log('INFO: GitHub Gist 更新完成！')
     })
     .catch((err) => {
-      console.error(err)
+      console.error(`FATAL: ${err}`)
 
       process.exit(1)
     })
