@@ -24,7 +24,7 @@ const content = `${data.sentence}
 console.log(`\n${content}\n`)
 
 const conf = {
-  token: getInput('token', { required: true }),
+  token: process.env.GH_TOKEN!,
   gistId: getInput('gist_id', { required: true }),
   gistFileName: getInput('gist_file_name', { required: true }),
 }

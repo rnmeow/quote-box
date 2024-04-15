@@ -1,9 +1,16 @@
 name: quote-box-zh_tw
 author: Yu-huan Kuo <touch@rnmeow.com>
-description: Get a quote and save as a file, API by Elegant TW. Works with GitHub Gist.
+description: Get a quote and push to GitHub Gist.
 runs:
   using: 'node20'
   main: 'dist/index.mjs'
+inputs:
+  gist_id:
+    default: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    description: The ID of the gist.
+  gist_file_name:
+    default: 🌧 Quote
+    description: The file name in the gist.
 branding:
   icon: 'file-text'
   color: 'yellow'

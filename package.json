@@ -2,7 +2,7 @@
   "name": "quote-box-zh_tw",
   "private": true,
   "version": "0.1.2",
-  "description": "Get a quote and save as a file, API by Elegant TW. Works with GitHub Gist.",
+  "description": "Get a quote and push to GitHub Gist.",
   "main": "dist/index.mjs",
   "scripts": {
     "format": "prettier --check src/index.ts",
