@@ -1,6 +1,6 @@
 # quote-box-zh_tw
 
-[![GitHub Release](https://badgen.net/github/release/rnmeow/quote-box-zh_tw)](https://www.npmjs.com/package/sanso)
+![GitHub Release](https://badgen.net/github/release/rnmeow/quote-box-zh_tw)
 
 下載一則隨機的語錄，格式化後利用 GitHub Actions 推送到 [Gist](https://gist.github.com)。
 
