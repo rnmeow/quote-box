@@ -1,6 +1,8 @@
 # quote-box-zh_tw
 
-下載一則隨機的語錄，格式化後存檔至 `quote.txt`。你可以利用 GitHub Actions 來定時推送到 [Gist](https://gist.github.com) 並釘選至個人檔案，以增添其豐富度。
+[![GitHub Release](https://badgen.net/github/release/rnmeow/quote-box-zh_tw)](https://www.npmjs.com/package/sanso)
+
+下載一則隨機的語錄，格式化後利用 GitHub Actions 推送到 [Gist](https://gist.github.com)。
 
 語錄 API 由 [言雅 Elegent TW](https://elegant.tw) 提供。
 
@@ -9,35 +11,29 @@
 
 ## 使用
 
-你可以使用 GitHub Actions 作業流程來執行操作，以下為一個範例，使用 [Deploy to Gist](https://github.com/marketplace/actions/deploy-to-gist)：
+使用 GitHub Actions 作業流程來推送至 Gist，以下為一個範例：
 
 ```yaml
-name: Push to Gist
+name: Get Quote
 
 on:
   push:
     branches:
       - master
   schedule:
-    - cron: 0 0 * * * # 每天執行
+    - cron: 0 0 * * *                             # 每天執行
 
 jobs:
   push:
     runs-on: ubuntu-22.04
-    env:
-      FILE_NAME: 🌧 Quote
-      GIST_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     steps:
-    - name: Download
-      uses: rnmeow/quote-box-zh_tw@0.1.1
-    - name: Push
-      uses: exuanbo/actions-deploy-gist@v1.1.4
+    - name: Download and Push
+      uses: rnmeow/quote-box-zh_tw@1.0.0
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}         # 須自行產生
       with:
-        token: ${{ secrets.GH_TOKEN }} # 需要自行產生
-        gist_id: ${{ env.GIST_ID }} # 上述 `env` 設定
-        gist_file_name: ${{ env.FILE_NAME }} # 上述 `env` 設定
-        file_path: quote.txt
-        file_type: text
+        gist_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # 須設定
+        gist_file_name: 🌧 Quote                  # 可設定，或使用預設值
 
 # Authored by Yu-huan Kuo, licensed under MIT License.
 ```
