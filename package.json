@@ -7,13 +7,17 @@
   "scripts": {
     "format": "prettier --check src/index.ts",
     "format:fix": "prettier --check src/index.ts --write",
-    "build": "esbuild src/index.ts --bundle --platform=node --minify --outfile=dist/index.mjs --format=esm"
+    "build": "esbuild src/index.ts --bundle --minify --format=esm --platform=node --outfile=dist/index.mjs"
   },
   "author": "Yu-huan Kuo <touch@rnmeow.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.11.24",
-    "esbuild": "^0.20.1",
+    "@types/node": "^20.12.7",
+    "esbuild": "^0.20.2",
     "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@octokit/request": "^9.1.0"
   }
 }

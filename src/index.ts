@@ -1,5 +1,5 @@
-import { join } from 'path'
-import { writeFile } from 'fs/promises'
+import { request } from '@octokit/request'
+import { getInput } from '@actions/core'
 
 export interface Resp {
   id: number
@@ -23,11 +23,36 @@ const content = `${data.sentence}
 
 console.log(`\n${content}\n`)
 
-try {
-  await writeFile(join(process.cwd(), 'quote.txt'), content)
-} catch (err) {
-  console.error(`FATAL: ${err}`)
-  process.exit(1)
+const conf = {
+  token: getInput('token', { required: true }),
+  gistId: getInput('gist_id', { required: true }),
+  gistFileName: getInput('gist_file_name', { required: true }),
 }
 
-console.log('INFO: 成功儲存。\n')
+const gist = await request('GET /gists/:gist_id', {
+  gist_id: conf.gistId,
+  headers: {
+    authorization: `token ${conf.token}`,
+  },
+})
+
+const filename = Object.keys(gist.data.files)[0]
+
+request('PATCH /gists/:gist_id', {
+  files: {
+    [filename]: {
+      filename: conf.gistFileName,
+      content,
+    },
+  },
+  gist_id: conf.gistId,
+  headers: {
+    authorization: `token ${conf.token}`,
+  },
+}).then(() => {
+  console.log('GitHub Gist 更新完成！')
+}).catch((err) => {
+  console.error(err)
+
+  process.exit(1)
+})
