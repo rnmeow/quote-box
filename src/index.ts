@@ -40,9 +40,9 @@ const msgTypes = {
   const quot = resp[0]
 
   const content = `“${quot.content}”
-  — ${quot.author}
+— ${quot.author}
   
-  Updated at ${new Date().toLocaleString('en-IE', {
+Updated at ${new Date().toLocaleString('en-IE', {
     timeZone: conf.timeZone || 'Asia/Taipei',
     hourCycle: 'h23',
 
