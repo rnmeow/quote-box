@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Download and Push
-      uses: rnmeow/quote-box-zh_tw@2.0.0
+      uses: rnmeow/quote-box-zh_tw@2.0.1
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}         # *
       # Settings
