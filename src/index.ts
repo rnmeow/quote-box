@@ -48,7 +48,7 @@ const msgTypes = {
   const content = `“${quot.content}”
 — ${quot.author}
 
-Updated at ${Intl.DateTimeFormat('en-IE', {
+Updated at ${new Intl.DateTimeFormat('en-IE', {
     dateStyle: 'medium',
     timeStyle: 'long',
   }).format(new Date())}`
