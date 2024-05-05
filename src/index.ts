@@ -36,7 +36,7 @@ const msgTypes = {
 
   console.log(msgTypes.info, `Fetching ${remt.toString()} …`)
 
-  const resp = await fetch(remt.toString())
+  const resp: Quot[] = await fetch(remt)
     .then((res) => res.json())
     .catch((err) => {
       console.error(msgTypes.fatal, `${err}`)
