@@ -42,18 +42,10 @@ const msgTypes = {
   const content = `“${quot.content}”
 — ${quot.author}
 
-Updated at ${new Date().toLocaleString('en-IE', {
-    timeZone: conf.timeZone,
-    hourCycle: 'h23',
-
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    timeZoneName: 'shortOffset',
-  })}`
+Updated at ${Intl.DateTimeFormat('en-IE', {
+    dateStyle: 'medium',
+    timeStyle: 'long',
+  }).format(new Date())}`
 
   console.log(`\n${content}\n`)
 
