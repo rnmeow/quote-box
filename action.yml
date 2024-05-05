@@ -1,5 +1,5 @@
-name: quote-box-zh_tw
-author: Yu-huan Kuo <touch@rnmeow.com>
+name: quote-box
+author: Connor Kuo <touch@rnmeow.com>
 description: Get a quote and push to GitHub Gist.
 runs:
   using: node20
