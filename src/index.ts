@@ -34,14 +34,14 @@ const msgTypes = {
   if (conf.minLength) remt.searchParams.set('minLength', conf.minLength)
   if (conf.maxLength) remt.searchParams.set('maxLength', conf.maxLength)
 
-  console.log(msgTypes.info, `Fetching ${remt.toString()} …`)
+  console.log(msgTypes.info, `Fetching ${remt.toString()}`)
 
   const resp = await fetch(remt.toString()).then((res) => res.json())
   const quot = resp[0]
 
   const content = `“${quot.content}”
 — ${quot.author}
-
+  
 Updated at ${new Date().toLocaleString('en-IE', {
     timeZone: conf.timeZone || 'Asia/Taipei',
     hourCycle: 'h23',
@@ -79,7 +79,7 @@ Updated at ${new Date().toLocaleString('en-IE', {
     },
   })
     .then(() => {
-      console.log(msgTypes.info, 'The Gist was updated successfully!')
+      console.log(msgTypes.info, 'GitHub Gist 更新完成！')
     })
     .catch((err) => {
       console.error(msgTypes.fatal, `${err}`)
