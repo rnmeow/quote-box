@@ -4,7 +4,7 @@
 
 Receive a random quote, and pushes to [Gist](https://gist.github.com) with GitHub Actions.
 
-The quotes' API is provide by [Quotable](https://github.com/lukePeavey/quotable).
+The quotes' API is provided by [Quotable](https://github.com/lukePeavey/quotable).
 
 > [!TIP]
 > *For more “pinned gists” projects, visit*  
@@ -18,9 +18,7 @@ Use a GitHub Actions workflow to execute `quote-box`. Here's an example:
 name: Get Quote
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
   schedule:
     - cron: 0 0 * * *                             # execution frequency and time
 
