@@ -1,34 +1,55 @@
 import { request } from '@octokit/request'
 import { getInput } from '@actions/core'
 
-export interface Resp {
-  id: number
-  category: number
-  cite: string
+export interface Quot {
+  _id: string
+  content: string
   author: string
-  sentence: string
+  authorSlug: string
+  length: number
+  tags: string[]
+}
+
+const conf = {
+  tags: getInput('tags'),
+  minLength: getInput('min_length'),
+  maxLength: getInput('max_length'),
+  timeZone: getInput('time_zone'),
+
+  token: process.env.GH_TOKEN!,
+  gistId: getInput('gist_id', { required: true }),
+  gistFileName: getInput('gist_file_name', { required: true }),
 }
 
 ;(async () => {
-  const data: Resp = await fetch('https://v0.elegant.tw/all').then((res) =>
-    res.json(),
-  )
+  const remt = new URL('https://api.quotable.io/quotes/random?limit=1')
 
-  const content = `${data.sentence}
- ——${data.author !== null ? data.author : data.cite}
+  if (conf.tags) remt.searchParams.set('tags', conf.tags)
+  if (conf.minLength) remt.searchParams.set('minLength', conf.minLength)
+  if (conf.maxLength) remt.searchParams.set('maxLength', conf.maxLength)
 
-於 ${new Date().toLocaleString('zh-TW', {
-    timeZone: 'Asia/Taipei',
+  console.log(`INFO: Fetching ${remt.toString()}`)
+
+  const resp = await fetch(remt.toString()).then((res) => res.json())
+  const quot = resp[0]
+
+  const content = `“${quot.content}”
+  — ${quot.author}
+  
+  Updated at ${new Date().toLocaleString('en-IE', {
+    timeZone: conf.timeZone || 'Asia/Taipei',
     hourCycle: 'h23',
-  })} 更新`
+
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'shortOffset',
+  })}`
 
   console.log(`\n${content}\n`)
-
-  const conf = {
-    token: process.env.GH_TOKEN!,
-    gistId: getInput('gist_id', { required: true }),
-    gistFileName: getInput('gist_file_name', { required: true }),
-  }
 
   const gist = await request('GET /gists/:gist_id', {
     gist_id: conf.gistId,
