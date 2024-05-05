@@ -1,18 +1,17 @@
-# quote-box
+# quote-box-zh_tw
 
-![GitHub Release](https://badgen.net/github/release/rnmeow/quote-box)
+![GitHub Release](https://badgen.net/github/release/rnmeow/quote-box-zh_tw)
 
-Receive a random quote, and pushes to [Gist](https://gist.github.com) with GitHub Actions.
+下載一則隨機的語錄，格式化後利用 GitHub Actions 推送到 [Gist](https://gist.github.com)。
 
-The quotes' API is provide by [Quotable](https://github.com/lukePeavey/quotable).
+語錄 API 由 [言雅 Elegent TW](https://elegant.tw) 提供。
 
-> [!TIP]
-> *For more “pinned gists” projects, visit*  
-> *<https://github.com/matchai/awesome-pinned-gists>.*
+> *PS. 若想了解更多「置頂 Gist」專案，請參見*  
+> *<https://github.com/matchai/awesome-pinned-gists>*
 
-## Usage
+## 使用
 
-Use a GitHub Actions workflow to execute `quote-box`. Here's an example:
+使用 GitHub Actions 作業流程來推送至 Gist，以下為一個範例：
 
 ```yaml
 name: Get Quote
@@ -22,7 +21,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: 0 0 * * *                             # execution frequency and time
+    - cron: 0 0 * * *                             # 每天執行
 
 jobs:
   push:
@@ -31,16 +30,13 @@ jobs:
     - name: Download and Push
       uses: rnmeow/quote-box-zh_tw@1.0.0
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}         # *
-      # Settings
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}         # 須自行產生
       with:
-        gist_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # *
-        gist_file_name: Quote                     # *
-        tags: technology                          # ref. https://api.quotable.io/tags
-        max_length: 80
-        time_zone: Asia/Taipei
+        gist_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # 須設定
+        gist_file_name: 🌧 Quote                  # 可設定，或使用預設值
 ```
 
-## License
+## 授權
 
-(C) 2023, 2024, Connor Kuo. [MIT License](https://github.com/rnmeow/quote-box/blob/v2/LICENSE.txt).
+(C) 2023, 2024 [Connor Kuo](https://github.com/rnmeow).  
+[MIT License](https://github.com/rnmeow/quote-box-zh_tw/blob/master/LICENSE.txt).
