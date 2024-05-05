@@ -43,7 +43,7 @@ const msgTypes = {
 — ${quot.author}
 
 Updated at ${new Date().toLocaleString('en-IE', {
-    timeZone: conf.timeZone || 'Asia/Taipei',
+    timeZone: conf.timeZone,
     hourCycle: 'h23',
 
     year: 'numeric',
@@ -69,11 +69,11 @@ Updated at ${new Date().toLocaleString('en-IE', {
   request('PATCH /gists/:gist_id', {
     files: {
       [filename]: {
-        filename: conf.gistFileName,
+        filename: conf.gistFileName || undefined,
         content,
       },
     },
-    gist_id: conf.gistId,
+    gist_id: conf.gistId || undefined,
     headers: {
       authorization: `token ${conf.token}`,
     },

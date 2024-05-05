@@ -35,6 +35,7 @@ jobs:
         gist_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # *
         gist_file_name: Quote                     # *
         tags: technology                          # ref. https://api.quotable.io/tags
+        min_length: 10
         max_length: 80
         time_zone: Asia/Taipei
 ```

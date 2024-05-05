@@ -2,26 +2,25 @@ name: quote-box
 author: Connor Kuo <touch@rnmeow.com>
 description: Get a quote and push to GitHub Gist.
 
+branding:
+  icon: file-text
+  color: yellow
+
 runs:
   using: node20
   main: dist/index.js
 
 inputs:
   gist_id:
-    default: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     description: The ID of the gist.
   gist_file_name:
-    default: 🌧 Quote
     description: The file name in the gist.
+  tags:
+    description: The tags you want the quote to have.
   min_length:
     description: The minimum length of the quote.
   max_length:
     description: The maximum length of the quote.
   time_zone:
-    description: Your preferred time zone.
-  tags:
-    description: Targeted tags you want the quote to have.
-
-branding:
-  icon: file-text
-  color: yellow
+    default: Asia/Taipei
+    description: Your preferred time zone for displaying.
