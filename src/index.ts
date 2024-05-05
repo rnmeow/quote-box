@@ -36,9 +36,15 @@ const msgTypes = {
 
   console.log(msgTypes.info, `Fetching ${remt.toString()} …`)
 
-  const resp = await fetch(remt.toString()).then((res) => res.json())
-  const quot = resp[0]
+  const resp = await fetch(remt.toString())
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error(msgTypes.fatal, `${err}`)
 
+      process.exit(1)
+    })
+
+  const quot = resp[0]
   const content = `“${quot.content}”
 — ${quot.author}
 
@@ -50,10 +56,14 @@ Updated at ${Intl.DateTimeFormat('en-IE', {
   console.log(`\n${content}\n`)
 
   const gist = await request('GET /gists/:gist_id', {
-    gist_id: conf.gistId,
+    gist_id: conf.gistId || undefined,
     headers: {
       authorization: `token ${conf.token}`,
     },
+  }).catch((err) => {
+    console.error(msgTypes.fatal, `${err}`)
+
+    process.exit(1)
   })
 
   const filename = Object.keys(gist.data.files)[0]
