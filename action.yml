@@ -1,4 +1,4 @@
-name: quote-box-zh_tw
+name: quote-box
 author: Connor Kuo <touch@rnmeow.com>
 description: Get a quote and push to GitHub Gist.
 runs:

@@ -1,6 +1,5 @@
 {
-  "name": "quote-box-zh_tw",
-  "private": true,
+  "name": "quote-box",
   "version": "1.0.0",
   "description": "Get a quote and push to GitHub Gist.",
   "main": "dist/index.js",
