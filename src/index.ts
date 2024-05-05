@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import { request } from '@octokit/request'
 import { getInput } from '@actions/core'
 
@@ -21,6 +22,11 @@ const conf = {
   gistFileName: getInput('gist_file_name', { required: true }),
 }
 
+const msgTypes = {
+  info: chalk.bold.bgBlueBright('INFO'),
+  fatal: chalk.bold.bgRedBright('FATL'),
+}
+
 ;(async () => {
   const remt = new URL('https://api.quotable.io/quotes/random?limit=1')
 
@@ -28,7 +34,7 @@ const conf = {
   if (conf.minLength) remt.searchParams.set('minLength', conf.minLength)
   if (conf.maxLength) remt.searchParams.set('maxLength', conf.maxLength)
 
-  console.log(`INFO: Fetching ${remt.toString()}`)
+  console.log(msgTypes.info, `Fetching ${remt.toString()}`)
 
   const resp = await fetch(remt.toString()).then((res) => res.json())
   const quot = resp[0]
@@ -73,10 +79,10 @@ const conf = {
     },
   })
     .then(() => {
-      console.log('INFO: GitHub Gist 更新完成！')
+      console.log(msgTypes.info, 'GitHub Gist 更新完成！')
     })
     .catch((err) => {
-      console.error(`FATAL: ${err}`)
+      console.error(msgTypes.fatal, `${err}`)
 
       process.exit(1)
     })
