@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Download and Push
-      uses: rnmeow/quote-box-zh_tw@1.0.0
+      uses: rnmeow/quote-box-zh_tw@2.0.0
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}         # *
       # Settings
@@ -41,4 +41,4 @@ jobs:
 
 ## License
 
-(C) 2023, 2024, Connor Kuo. [MIT License](https://github.com/rnmeow/quote-box/blob/v2/LICENSE.txt).
+(C) 2023, 2024, Connor Kuo. [MIT License](https://github.com/rnmeow/quote-box/blob/master/LICENSE.txt).
