@@ -8,7 +8,7 @@
     "format": "prettier --check src/index.ts --write",
     "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=dist/index.js"
   },
-  "author": "Yu-huan Kuo <touch@rnmeow.com>",
+  "author": "Connor Kuo <touch@rnmeow.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.12.7",

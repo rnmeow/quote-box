@@ -34,10 +34,9 @@ jobs:
       with:
         gist_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # 須設定
         gist_file_name: 🌧 Quote                  # 可設定，或使用預設值
-
-# Authored by Yu-huan Kuo, licensed under MIT License.
 ```
 
 ## 授權
 
-Copyright (C) 2023, 2024 [Yu-huan Kuo](https://github.com/rnmeow), licensed under [MIT License](https://github.com/rnmeow/quote-box-zh_tw/blob/master/LICENSE.txt).
+(C) 2023, 2024 [Connor Kuo](https://github.com/rnmeow).  
+[MIT License](https://github.com/rnmeow/quote-box-zh_tw/blob/master/LICENSE.txt).
