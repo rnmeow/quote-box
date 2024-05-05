@@ -5,7 +5,8 @@
   "description": "Get a quote and push to GitHub Gist.",
   "main": "dist/index.js",
   "scripts": {
-    "format": "prettier --check src/index.ts --write",
+    "format": "prettier --check src/index.ts",
+    "format:fix": "prettier --check src/index.ts --write",
     "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=dist/index.js"
   },
   "author": "Yu-huan Kuo <touch@rnmeow.com>",
