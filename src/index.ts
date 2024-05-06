@@ -36,7 +36,13 @@ const logTypes = {
 
   console.log(logTypes.info, `Fetching ${quotableUrl.toString()} …`)
 
-  const dat: Quot[] = await fetch(quotableUrl)
+  const dat: Quot[] = await fetch(quotableUrl, {
+    method: 'GET',
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0',
+    },
+  })
     .then((resp) => resp.json())
     .catch((err) => {
       console.error(logTypes.fatl, err)
