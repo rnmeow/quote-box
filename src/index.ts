@@ -22,29 +22,30 @@ const conf = {
   gistFileName: getInput('gist_file_name', { required: true }),
 }
 
-const msgTypes = {
+const logTypes = {
   info: chalk.bold.bgBlueBright('INFO'),
   fatal: chalk.bold.bgRedBright('FATL'),
 }
 
 ;(async () => {
-  const remt = new URL('https://api.quotable.io/quotes/random?limit=1')
+  const quotableUrl = new URL('https://api.quotable.io/quotes/random')
 
-  if (conf.tags) remt.searchParams.set('tags', conf.tags)
-  if (conf.minLength) remt.searchParams.set('minLength', conf.minLength)
-  if (conf.maxLength) remt.searchParams.set('maxLength', conf.maxLength)
+  quotableUrl.searchParams.set('limit', '1')
+  conf.tags && quotableUrl.searchParams.set('tags', conf.tags)
+  conf.minLength && quotableUrl.searchParams.set('minLength', conf.minLength)
+  conf.maxLength && quotableUrl.searchParams.set('maxLength', conf.maxLength)
 
-  console.log(msgTypes.info, `Fetching ${remt.toString()} …`)
+  console.log(logTypes.info, `Fetching ${quotableUrl.toString()} …`)
 
-  const resp: Quot[] = await fetch(remt)
-    .then((res) => res.json())
+  const dat: Quot[] = await fetch(quotableUrl)
+    .then((resp) => resp.json())
     .catch((err) => {
-      console.error(msgTypes.fatal, `${err}`)
+      console.error(logTypes.fatal, `${err}`)
 
       process.exit(1)
     })
 
-  const quot = resp[0]
+  const quot = dat[0]
   const content = `“${quot.content}”
 — ${quot.author}
 
@@ -61,7 +62,7 @@ Updated at ${new Intl.DateTimeFormat('en-IE', {
       authorization: `token ${conf.token}`,
     },
   }).catch((err) => {
-    console.error(msgTypes.fatal, `${err}`)
+    console.error(logTypes.fatal, `${err}`)
 
     process.exit(1)
   })
@@ -81,10 +82,10 @@ Updated at ${new Intl.DateTimeFormat('en-IE', {
     },
   })
     .then(() => {
-      console.log(msgTypes.info, 'The Gist was updated successfully!')
+      console.log(logTypes.info, 'The Gist was updated successfully!')
     })
     .catch((err) => {
-      console.error(msgTypes.fatal, `${err}`)
+      console.error(logTypes.fatal, `${err}`)
 
       process.exit(1)
     })
