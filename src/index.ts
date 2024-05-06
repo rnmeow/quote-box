@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import { request } from '@octokit/request'
 import { getInput } from '@actions/core'
 
@@ -23,8 +22,8 @@ const conf = {
 }
 
 const logTypes = {
-  info: chalk.bold.bgBlueBright('INFO'),
-  fatal: chalk.bold.bgRedBright('FATL'),
+  info: `\x1b[44mINFO\x1b[0m`,
+  fatl: `\x1b[41mFATL\x1b[0m`,
 }
 
 ;(async () => {
@@ -40,7 +39,7 @@ const logTypes = {
   const dat: Quot[] = await fetch(quotableUrl)
     .then((resp) => resp.json())
     .catch((err) => {
-      console.error(logTypes.fatal, `${err}`)
+      console.error(logTypes.fatl, err)
 
       process.exit(1)
     })
@@ -62,7 +61,7 @@ Updated at ${new Intl.DateTimeFormat('en-IE', {
       authorization: `token ${conf.token}`,
     },
   }).catch((err) => {
-    console.error(logTypes.fatal, `${err}`)
+    console.error(logTypes.fatl, err)
 
     process.exit(1)
   })
@@ -85,7 +84,7 @@ Updated at ${new Intl.DateTimeFormat('en-IE', {
       console.log(logTypes.info, 'The Gist was updated successfully!')
     })
     .catch((err) => {
-      console.error(logTypes.fatal, `${err}`)
+      console.error(logTypes.fatl, err)
 
       process.exit(1)
     })
