@@ -55,6 +55,8 @@ const logTypes = {
 — ${quot.author}
 
 Updated at ${new Intl.DateTimeFormat('en-IE', {
+    timeZone: conf.timeZone,
+
     dateStyle: 'medium',
     timeStyle: 'long',
   }).format(new Date())}`
