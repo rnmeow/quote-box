@@ -54,7 +54,7 @@ const logTypes = {
   const content = `“${quot.content}”
 — ${quot.author}
 
-Updated at ${new Intl.DateTimeFormat('en-IE', {
+Updated ${new Intl.DateTimeFormat('en-IE', {
     timeZone: conf.timeZone,
 
     dateStyle: 'medium',
