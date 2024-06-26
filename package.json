@@ -10,7 +10,7 @@
   "author": "Connor Kuo <touch@rnmeow.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.14.9",
     "esbuild": "^0.20.2",
     "prettier": "^3.2.5"
   },
