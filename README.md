@@ -4,8 +4,6 @@
 
 Receive a random quote, and pushes to [Gist](https://gist.github.com) with GitHub Actions.
 
-The quotes' API is provided by [Quotable](https://github.com/lukePeavey/quotable).
-
 > [!TIP]
 > *For more “pinned gists” projects, visit*  
 > *<https://github.com/matchai/awesome-pinned-gists>.*
@@ -32,12 +30,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}         # *
       # Settings
       with:
-        gist_id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # *
-        gist_file_name: Quote                     # *
-        tags: technology                          # ref. https://api.quotable.io/tags
-        min_length: 10
-        max_length: 80
-        time_zone: Asia/Taipei
+        confFile: conf.json
 ```
 
 ## License
