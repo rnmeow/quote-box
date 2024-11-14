@@ -105,7 +105,7 @@ Updated ${new Intl.DateTimeFormat('en-IE', {
     },
     gist_id: conf.gistId,
     headers: {
-      authorization: `token ${conf.token}`,
+      authorization: `token ${process.env.GH_TOKEN!}`,
     },
   })
     .then(() => {
