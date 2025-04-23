@@ -16,12 +16,11 @@ const confVal = type({
   contentKey: "string",
 
   // GitHub
-  token: "string",
   gistId: "string",
   gistFileName: "string",
 
   // Formatting
-  timeZone: "string",
+  "timeZone?": "string",
 })
 
 const logTypes = {
@@ -87,10 +86,11 @@ Updated ${new Intl.DateTimeFormat('en-IE', {
   const gist = await request('GET /gists/:gist_id', {
     gist_id: conf.gistId,
     headers: {
-      authorization: `token ${conf.token}`,
+      authorization: `token ${process.env.GH_TOKEN!}`,
     },
   }).catch((err) => {
     console.error(logTypes.fatl, err)
+
     process.exit(1)
   })
 
