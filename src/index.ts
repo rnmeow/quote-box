@@ -2,26 +2,26 @@ import { readFile } from 'node:fs/promises'
 
 import { request } from '@octokit/request'
 import { getInput } from '@actions/core'
-import { z } from 'zod'
+import { type } from 'arktype'
 import { join } from 'path'
 
-type Config = z.infer<typeof ConfigSchema>
+type Config = typeof confVal.infer
 
-const ConfigSchema = z.object({
+const confVal = type({
   // API
-  apiUrl: z.string(),
-  searchParams: z.record(z.string()).optional(),
-  returnsArr: z.boolean().optional(),
-  authorKey: z.string(),
-  contentKey: z.string(),
+  apiUrl: "string",
+  "searchParams?": "Record<string, string>",
+  "returnsArr?": "boolean",
+  authorKey: "string",
+  contentKey: "string",
 
   // GitHub
-  token: z.string(),
-  gistId: z.string(),
-  gistFileName: z.string(),
+  token: "string",
+  gistId: "string",
+  gistFileName: "string",
 
   // Formatting
-  timeZone: z.string(),
+  timeZone: "string",
 })
 
 const logTypes = {
@@ -40,12 +40,10 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 }
 
 ;(async () => {
-  const conf = await loadConfig(getInput('confFile'))
+  const conf = confVal(await loadConfig(getInput('confFile')))
 
-  try {
-    ConfigSchema.parse(conf)
-  } catch (err) {
-    console.error(logTypes.fatl, err)
+  if (conf instanceof type.errors) {
+    console.error(logTypes.fatl, conf.summary)
 
     process.exit(1)
   }
@@ -69,6 +67,7 @@ async function loadConfig(confFilePath: string): Promise<Config> {
     .then((resp) => resp.json())
     .catch((err) => {
       console.error(logTypes.fatl, err)
+
       process.exit(1)
     })
 
