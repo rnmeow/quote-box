@@ -80,7 +80,7 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 
   let data: Object
 
-  for (;;) {
+  do {
     data = await fetch(apiUrl, {
       method: 'GET',
       headers: {
@@ -94,11 +94,7 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 
         process.exit(1)
       })
-
-    if ((getValueFromPath(data, conf.contentKey) as string).length < 100) {
-      break
-    }
-  }
+  } while ((getValueFromPath(data, conf.contentKey) as string).length >= 100)
 
   const content = `“${splitByWordBoundary(
     getValueFromPath(data, conf.contentKey) as string,
