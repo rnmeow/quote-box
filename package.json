@@ -1,6 +1,6 @@
 {
   "name": "quote-box",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Get a quote and push to GitHub Gist.",
   "main": "dist/index.js",
   "scripts": {
