@@ -1,31 +1,34 @@
+import { readFile } from 'node:fs/promises'
+
 import { request } from '@octokit/request'
 import { getInput } from '@actions/core'
-import { z } from 'zod'
+import { type } from 'arktype'
 import { join } from 'path'
-import { readFile } from 'fs/promises'
 
-type Config = z.infer<typeof ConfigSchema>
+type Config = typeof confVal.infer
 
-const ConfigSchema = z.object({
+const confVal = type({
   // API
-  apiUrl: z.string(),
-  searchParams: z.record(z.string()).optional(),
-  returnsArr: z.boolean().optional(),
-  authorKey: z.string(),
-  contentKey: z.string(),
+  'apiUrl': 'string',
+  'searchParams?': 'Record<string, string>',
+  'authorKey': 'string',
+  'contentKey': 'string',
 
   // GitHub
-  token: z.string(),
-  gistId: z.string(),
-  gistFileName: z.string(),
+  'gistId': 'string',
+  'gistFileName': 'string',
 
   // Formatting
-  timeZone: z.string(),
+  'timeZone?': 'string',
 })
 
 const logTypes = {
   info: `\x1b[44mINFO\x1b[0m`,
   fatl: `\x1b[41mFATL\x1b[0m`,
+}
+
+const getValueFromPath = (obj: Object, path: string) => {
+  return path.split('.').reduce((acc, part) => acc?.[part], obj)
 }
 
 async function loadConfig(confFilePath: string): Promise<Config> {
@@ -39,12 +42,10 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 }
 
 ;(async () => {
-  const conf = await loadConfig(getInput('confFile'))
+  const conf = confVal(await loadConfig(getInput('confFile')))
 
-  try {
-    ConfigSchema.parse(conf)
-  } catch (err) {
-    console.error(logTypes.fatl, err)
+  if (conf instanceof type.errors) {
+    console.error(logTypes.fatl, conf.summary)
 
     process.exit(1)
   }
@@ -58,7 +59,7 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 
   console.log(logTypes.info, `Fetching ${apiUrl.toString()} …`)
 
-  let data: any = await fetch(apiUrl, {
+  const data: Object = await fetch(apiUrl, {
     method: 'GET',
     headers: {
       'User-Agent':
@@ -68,13 +69,12 @@ async function loadConfig(confFilePath: string): Promise<Config> {
     .then((resp) => resp.json())
     .catch((err) => {
       console.error(logTypes.fatl, err)
+
       process.exit(1)
     })
 
-  data = conf.returnsArr ? data : data[0]
-
-  const content = `“${data[conf.contentKey]}”
-— ${data[conf.authorKey]}
+  const content = `“${getValueFromPath(data, conf.contentKey)}”
+— ${getValueFromPath(data, conf.authorKey)}
 
 Updated ${new Intl.DateTimeFormat('en-IE', {
     timeZone: conf.timeZone || 'Asia/Taipei',
@@ -87,10 +87,11 @@ Updated ${new Intl.DateTimeFormat('en-IE', {
   const gist = await request('GET /gists/:gist_id', {
     gist_id: conf.gistId,
     headers: {
-      authorization: `token ${conf.token}`,
+      authorization: `token ${process.env.GH_TOKEN!}`,
     },
   }).catch((err) => {
     console.error(logTypes.fatl, err)
+
     process.exit(1)
   })
 
