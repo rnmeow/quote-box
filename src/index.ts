@@ -9,23 +9,27 @@ type Config = typeof confVal.infer
 
 const confVal = type({
   // API
-  apiUrl: "string",
-  "searchParams?": "Record<string, string>",
-  "returnsArr?": "boolean",
-  authorKey: "string",
-  contentKey: "string",
+  'apiUrl': 'string',
+  'searchParams?': 'Record<string, string>',
+  'returnsArr?': 'boolean',
+  'authorKey': 'string',
+  'contentKey': 'string',
 
   // GitHub
-  gistId: "string",
-  gistFileName: "string",
+  'gistId': 'string',
+  'gistFileName': 'string',
 
   // Formatting
-  "timeZone?": "string",
+  'timeZone?': 'string',
 })
 
 const logTypes = {
   info: `\x1b[44mINFO\x1b[0m`,
   fatl: `\x1b[41mFATL\x1b[0m`,
+}
+
+function getValueFromPath(obj: Object, path: string) {
+  return path.split('.').reduce((acc, part) => acc?.[part], obj)
 }
 
 async function loadConfig(confFilePath: string): Promise<Config> {
@@ -72,8 +76,8 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 
   data = conf.returnsArr ? data : data[0]
 
-  const content = `“${data[conf.contentKey]}”
-— ${data[conf.authorKey]}
+  const content = `“${getValueFromPath(data, conf.contentKey)}”
+— ${getValueFromPath(data, conf.authorKey)}
 
 Updated ${new Intl.DateTimeFormat('en-IE', {
     timeZone: conf.timeZone || 'Asia/Taipei',
