@@ -78,21 +78,31 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 
   console.log(logTypes.info, `Fetching ${apiUrl.toString()} …`)
 
-  const data: Object = await fetch(apiUrl, {
-    method: 'GET',
-    headers: {
-      'User-Agent':
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0',
-    },
-  })
-    .then((resp) => resp.json())
-    .catch((err) => {
-      console.error(logTypes.fatl, err)
+  let data: Object
 
-      process.exit(1)
+  for (;;) {
+    data = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0',
+      },
     })
+      .then((resp) => resp.json())
+      .catch((err) => {
+        console.error(logTypes.fatl, err)
 
-  const content = `“${splitByWordBoundary(getValueFromPath(data, conf.contentKey) as string).join('\n')}”
+        process.exit(1)
+      })
+
+    if ((getValueFromPath(data, conf.contentKey) as string).length < 100) {
+      break
+    }
+  }
+
+  const content = `“${splitByWordBoundary(
+    getValueFromPath(data, conf.contentKey) as string,
+  ).join('\n')}”
 — ${getValueFromPath(data, conf.authorKey)}
 
 Updated ${new Intl.DateTimeFormat('en-IE', {
