@@ -27,8 +27,27 @@ const logTypes = {
   fatl: `\x1b[41mFATL\x1b[0m`,
 }
 
-const getValueFromPath = (obj: Object, path: string) => {
-  return path.split('.').reduce((acc, part) => acc?.[part], obj)
+const getValueFromPath = (obj: Object, path: string) =>
+  path.split('.').reduce((acc, part) => acc?.[part], obj)
+
+function splitByWordBoundary(text: string, maxLength = 50) {
+  const words = text.split(' ')
+  const lines: string[] = []
+  let currentLine = ''
+
+  for (let word of words) {
+    if ((currentLine + word).length <= maxLength) {
+      currentLine += (currentLine ? ' ' : '') + word
+    } else {
+      lines.push(currentLine)
+
+      currentLine = word
+    }
+  }
+
+  if (currentLine) lines.push(currentLine)
+
+  return lines
 }
 
 async function loadConfig(confFilePath: string): Promise<Config> {
@@ -73,7 +92,7 @@ async function loadConfig(confFilePath: string): Promise<Config> {
       process.exit(1)
     })
 
-  const content = `“${getValueFromPath(data, conf.contentKey)}”
+  const content = `“${splitByWordBoundary(getValueFromPath(data, conf.contentKey) as string).join('\n')}”
 — ${getValueFromPath(data, conf.authorKey)}
 
 Updated ${new Intl.DateTimeFormat('en-IE', {
