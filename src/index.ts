@@ -1,8 +1,9 @@
+import { readFile } from 'node:fs/promises'
+
 import { request } from '@octokit/request'
 import { getInput } from '@actions/core'
 import { z } from 'zod'
 import { join } from 'path'
-import { readFile } from 'fs/promises'
 
 type Config = z.infer<typeof ConfigSchema>
 
