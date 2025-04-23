@@ -102,7 +102,7 @@ async function loadConfig(confFilePath: string): Promise<Config> {
 
   const content = `“${splitByWordBoundary(
     getValueFromPath(data, conf.contentKey) as string,
-  ).join('\n')}”
+  ).join('\n ')}”
 — ${getValueFromPath(data, conf.authorKey)}
 
 Updated ${new Intl.DateTimeFormat('en-IE', {
